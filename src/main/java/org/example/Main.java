@@ -9,65 +9,59 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc= new Scanner(System.in);
     String scan="";
-    while (scan!="quite") {
+    while (scan!="quit") {
         scan=sc.nextLine();
-        if(scan.indexOf("add",0)==0 && scan.contains("<") && scan.contains(">")){
-            String op=scan.substring(scan.indexOf("<")+1,scan.indexOf(">"));
+        if(scan.indexOf("add",0)==0 ){
+            String op=scan.substring(4,scan.length());
             add(op);
         }
         else if(scan.equals("print")){
             print("");
         }
-        else if(scan.equals("print [all]")){
+        else if(scan.equals("print all")){
             print("all");
         }
-        else if(scan.indexOf("toggle",0)==0 && scan.contains("<") && scan.contains(">")){
+        else if(scan.indexOf("toggle",0)==0){
             try {
-                String op = scan.substring(scan.indexOf("<") + 1, scan.indexOf(">"));
+                String op = scan.substring(7, scan.length());
                 toggle(Integer.parseInt(op));
             }
             catch (Exception e){
                 System.out.println("Введите корректные данные");
             }
         }
-        else if(scan.indexOf("delete",0)==0 && scan.contains("<") && scan.contains(">")){
+        else if(scan.indexOf("delete",0)==0){
             try {
-                String op = scan.substring(scan.indexOf("<") + 1, scan.indexOf(">"));
+                String op = scan.substring(7, scan.length());
                 delete(Integer.parseInt(op));
             }
             catch (Exception e){
                 System.out.println("Введите корректные данные");
             }
         }
-        else if(scan.indexOf("edit",0)==0 && scan.contains("<") && scan.contains(">")){
+        else if(scan.indexOf("edit",0)==0){
             try {
-                int p1 = 0, p2 = 0;
-                for (int i = 0; i < scan.length(); i++) {
-                    if (scan.toCharArray()[i] == '<') p1++;
-                    if (scan.toCharArray()[i] == '>') p2++;
-                }
-                if (p1 == 2 && p2 == 2) {
-                    String op = scan.substring(scan.indexOf("<") + 1, scan.indexOf(">"));
-                    int p = scan.indexOf(">");
-                    scan = scan.substring(p + 1, scan.length());
-                    String op1 = scan.substring(scan.indexOf("<") + 1, scan.indexOf(">"));
-                    edit(Integer.parseInt(op), op1);
-                }
+                scan=scan.trim();
+                int i1=scan.indexOf(' ');
+                int i2=scan.lastIndexOf(' ');
+                String op=scan.substring(i1+1,i2);
+                String op1=scan.substring(i2+1,scan.length());
+                edit(Integer.parseInt(op), op1);
             }
             catch (Exception e){
                 System.out.println("Введите корректные данные");
             }
         }
-        else if(scan.indexOf("search",0)==0 && scan.contains("<") && scan.contains(">")){
+        else if(scan.indexOf("search",0)==0){
             try {
-                String op = scan.substring(scan.indexOf("<") + 1, scan.indexOf(">"));
+                String op = scan.substring(7, scan.length());
                 search(op);
             }
             catch (Exception e){
                 System.out.println("Введите корректные данные");
             }
         }
-        else if(scan.equals("quite"))
+        else if(scan.equals("quit"))
             return;
         else{
             System.out.println("Неверная команда");
@@ -108,9 +102,9 @@ public class Main {
                 return;
             }
     }
-    static void quite(){
-        return;
-    }
+//    static void quit(){
+//        return;
+//    }
     static void delete(int i) {
             if(i-1<todo.size()) {
                 todo.remove(i - 1);
@@ -122,7 +116,7 @@ public class Main {
     }
     static void edit(int i, String n){
             if(i-1<todo.size()) {
-                todo.set(i - 1, "[] " + n);
+                todo.set(i - 1, "[ ] " + n);
             }
             else{
                 System.out.println("Неверный номер задачи");
