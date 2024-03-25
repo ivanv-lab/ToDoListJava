@@ -13,7 +13,7 @@ public class Main {
         scan=sc.nextLine();
         if(scan.indexOf("add",0)==0 ){
             String op=scan.substring(4,scan.length());
-            add(op);
+            add(op.trim());
         }
         else if(scan.equals("print")){
             print("");
@@ -24,7 +24,7 @@ public class Main {
         else if(scan.indexOf("toggle",0)==0){
             try {
                 String op = scan.substring(7, scan.length());
-                toggle(Integer.parseInt(op));
+                toggle(Integer.parseInt(op.trim()));
             }
             catch (Exception e){
                 System.out.println("Введите корректные данные");
@@ -33,7 +33,7 @@ public class Main {
         else if(scan.indexOf("delete",0)==0){
             try {
                 String op = scan.substring(7, scan.length());
-                delete(Integer.parseInt(op));
+                delete(Integer.parseInt(op.trim()));
             }
             catch (Exception e){
                 System.out.println("Введите корректные данные");
@@ -55,7 +55,7 @@ public class Main {
         else if(scan.indexOf("search",0)==0){
             try {
                 String op = scan.substring(7, scan.length());
-                search(op);
+                search(op.trim());
             }
             catch (Exception e){
                 System.out.println("Введите корректные данные");
