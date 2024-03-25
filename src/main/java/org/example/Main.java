@@ -102,9 +102,6 @@ public class Main {
                 return;
             }
     }
-//    static void quit(){
-//        return;
-//    }
     static void delete(int i) {
             if(i-1<todo.size()) {
                 todo.remove(i - 1);
